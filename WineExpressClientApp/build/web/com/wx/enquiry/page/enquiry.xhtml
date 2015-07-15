@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <!--h:form id="form" rendered="#{enquiryBean.isAdmin}"-->  
+    <!--h:form id="form" rendered="false">  
+        <p:growl id="msgs" showDetail="true" />  
+        <p:dataTable id="cars" var="Dummy" value="#{enquiryBean.Dummies}">  
+            <p:column headerText="Email" style="width:24%">  
+                <h:outputText value="#{Dummy.model}" />  
+            </p:column>  
+            <p:column headerText="Enquiry" style="width:24%">  
+                <h:outputText value="#{Dummy.enquiry}" />  
+            </p:column>  
+            <p:column headerText="Reply" style="width:24%">  
+                <h:outputText value="#{Dummy.reply}" />  
+            </p:column>
+            <p:column style="width:4%">  
+                    <p:commandButton id="selectButton" update=":form:display" oncomplete="PF('carDialog').show()" icon="ui-icon-search" title="View">  
+                    <f:setPropertyActionListener value="#{Dummy}" target="#{enquiryBean.selectedDummy}" />  
+                </p:commandButton>  
+            </p:column>  
+        </p:dataTable>  
+        <p:dialog header="Car Detail" widgetVar="carDialog" resizable="false" id="carDlg"  
+                    showEffect="fade" hideEffect="explode" modal="true"> 
+            <h:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
+                <f:facet name="header">  
+                    <p:graphicImage value="/images/cars/#{enquiryBean.selectedCar.manufacturer}.jpg"/>  
+                </f:facet>  
+                <h:outputText value="Model:" />  
+                <h:outputText value="#{enquiryBean.selectedCar.model}" style="font-weight:bold"/>  
+                <h:outputText value="Year:" />  
+                <h:outputText value="#{enquiryBean.selectedCar.year}" style="font-weight:bold"/>  
+                <h:outputText value="Manufacturer:" />  
+                <h:outputText value="#{enquiryBean.selectedCar.manufacturer}" style="font-weight:bold"/>
+                <h:outputText value="Color:" />  
+                <h:outputText value="#{enquiryBean.selectedCar.color}" style="font-weight:bold"/>  
+            </h:panelGrid>  
+        </p:dialog>  
+    </h:form-->
+    
+    <!--h:form rendered="#{!enquiryBean.isAdmin}"-->  
+    <h:form rendered="true">  
+        <p:growl id="growl" showDetail="true" sticky="true" />  
+        <p:inputTextarea value="#{enquiryBean.enquiry}" rows="5" cols="30" required="true" label="content" autoResize="false"/>
+        <p:commandButton value="Submit" actionListener="#{enquiryController.submit}" update="growl"/>  
+    </h:form>
+
+</ui:composition>
+

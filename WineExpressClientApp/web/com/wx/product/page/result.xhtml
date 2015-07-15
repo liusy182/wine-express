@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+
+    <style>
+.topAlign td {
+    vertical-align: top;
+}
+.rightAlign td {
+    text-align:right;
+}
+
+.productListTable td:nth-child(1) {
+    width: 60px;
+}
+.productListTable td:nth-child(2) {
+    width: 350px;
+}
+.productListTable td:nth-child(3) {
+    text-align:right;
+}       
+    </style>
+<h:form id="product_result_form">    
+
+    <p:dataGrid var="product" value="#{productListBean.products}" columns="1"  
+        rows="15" paginator="true"  
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+        rowsPerPageTemplate="5,10,15">  
+  
+        <p:panel  style="text-align:left">  
+            <h:panelGrid columns="3" cellpadding="10" width="100%" styleClass="topAlign productListTable">  
+                  
+                
+                <p:graphicImage value="/image/product/1997-oaky-634134200941093750.png" width="40"/> 
+                
+                
+                <h:panelGroup> 
+                <h:commandLink action="#{productController.detail}" value="#{product.model}" style="font-size:25px;font-weight:bold">
+                        <f:param name="id" value="#{product.model}" />
+                </h:commandLink>
+                <br/>
+                <h:outputText id="year" value="#{product.year}" />  
+                <br/>
+                <h:outputText  
+            value="When we first tried this wine, and were told it was $9.99 Pinot Noir, we were suspect (at best) of its quality...two glasses later and this is our new go to Pinot Noir. Nothing but pure joy in a bottle..." />  
+        <br/>
+                <h:outputText id="color" value="#{product.color}" style="color:#{product.color}"/>  
+                </h:panelGroup>  
+                
+                <p:column width="100%">
+                
+                <h:panelGroup > 
+                <h:outputText  value="$9.99" style="font-size:20px;font-weight:bold"/>
+                <br/>
+                <br/>
+                <p:spinner  min="0"  value="0"/>
+                <br/>
+                <p:commandButton  value="ADD TO SHOPPING CART"  />
+                
+                </h:panelGroup> 
+                </p:column>
+            </h:panelGrid>  
+        </p:panel>  
+  
+    </p:dataGrid>  
+</h:form>
+
+</ui:composition>

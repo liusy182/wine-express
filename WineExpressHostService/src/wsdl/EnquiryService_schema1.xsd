@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://service.enquiry.wx.com/" xmlns:tns="http://service.enquiry.wx.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="Exception" type="tns:Exception"/>
+
+  <xs:element name="addEnquiry" type="tns:addEnquiry"/>
+
+  <xs:element name="addEnquiryResponse" type="tns:addEnquiryResponse"/>
+
+  <xs:complexType name="addEnquiry">
+    <xs:sequence>
+      <xs:element name="arg0" type="tns:enquiryDTO" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="enquiryDTO">
+    <xs:complexContent>
+      <xs:extension base="tns:baseDTO">
+        <xs:sequence>
+          <xs:element name="enquiryMsg" type="xs:string" minOccurs="0"/>
+          <xs:element name="enquiryStatus" type="xs:string" minOccurs="0"/>
+          <xs:element name="replyMsg" type="xs:string" minOccurs="0"/>
+          <xs:element name="sendEmail" type="xs:string" minOccurs="0"/>
+          <xs:element name="submitDatetime" type="xs:dateTime" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="baseDTO" abstract="true">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="addEnquiryResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

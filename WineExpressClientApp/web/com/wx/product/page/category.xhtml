@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
+ <h:form id="product_category_form">                      
+        <p:growl id="growl" showDetail="true"/>  
+  
+    <p:dataTable id="categoryTable" var="category" value="#{productCategoryBean.categories}" rowKey="#{category.name}"  
+                 selection="#{productCategoryBean.selectedCategory}" selectionMode="single" >  
+
+        
+        <p:column headerText="Category" style="width:49%">  
+
+                    <h:outputText value="#{category.name}" />  
+
+        </p:column>  
+        
+        <p:column headerText="Description" style="width:43%">  
+              
+                    <h:outputText value="#{category.description}" />  
+ 
+            
+        </p:column>
+    
+
+            
+
+ 
+    </p:dataTable>   
+        
+        <p:commandButton id="createButton" value="Create" icon="ui-icon-lightbulb"  />  
+        <p:commandButton id="updateButton" value="Update" icon="ui-icon-pencil"  /> 
+         <p:commandButton id="deleteButton" value="Delete" icon="ui-icon-close"  /> 
+        
+        <p:dialog id="dialog" header="Car Detail" widgetVar="carDialog" resizable="false"  
+              width="200" showEffect="clip" hideEffect="fold">  
+    
+            <p:dataTable id="subcategory_table" var="subcategory" value="#{productCategoryBean.selectedCategory.subcategories}" >  
+                <p:column headerText="SubCategory" style="width:96%">  
+            
+                    <p:cellEditor>  
+                        <f:facet name="output">  
+                            <h:outputText value="#{subcategory.name}" />  
+                        </f:facet>  
+                        <f:facet name="input">  
+                            <p:inputText value="#{subcategory.name}" style="width:100%"/>  
+                        </f:facet>  
+                    </p:cellEditor>
+                </p:column> 
+        </p:dataTable>
+            
+            </p:dialog>  
+ </h:form>  
+    
+    
+    
+</ui:composition>

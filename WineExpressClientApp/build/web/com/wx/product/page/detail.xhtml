@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                >
+    
+    
+<h:form id="product_detail_form">
+    <p:growl id="product_detail_messages" showDetail="true"/>  
+    
+    
+    <h:panelGrid columns="2" cellpadding="10">  
+        
+        
+        <p:graphicImage value="/image/product/1997-oaky-634134200941093750.png" /> 
+        
+        <h:panelGrid columns="1" cellpadding="0" >  
+        <h:outputText  value="CALIFORNIA"/>
+
+        <h:outputText  value="99 Vines Pinot Noir" style="font-size:30px;font-weight:bold"/>
+        
+        <h:outputText  
+            value="When we first tried this wine, and were told it was $9.99 Pinot Noir, we were suspect (at best) of its quality...two glasses later and this is our new go to Pinot Noir. Nothing but pure joy in a bottle..." />  
+        
+        
+        <p:rating value="4" readonly="true"  /> 
+        <p:rating value="3">  
+            <p:ajax event="rate"  update="product_detail_messages" />  
+            <p:ajax event="cancel" update="product_detail_messages" />  
+        </p:rating> 
+        
+        
+        <br/>
+        <h:outputText  value="$9.99" style="font-size:20px;font-weight:bold"/>
+        <br/>
+        <p:spinner  min="0"  value="0"/>
+        
+        <p:commandButton  value="ADD TO SHOPPING CART"  />
+
+        </h:panelGrid>
+        
+    </h:panelGrid>  
+    <p:fieldset legend="Comments">  
+        <p:inputTextarea id="product_comment_text" rows="3" cols="120" />  
+        <p:watermark for="product_comment_text" value="Share your thoughts" />
+        <br/>
+        <p:commandButton  value="Post"  />
+        <br/>
+        <br/>
+        <p:dataGrid var="comment" value="#{productDetailsBean.comments}" columns="1"  
+        rows="15" paginator="true"  
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+        rowsPerPageTemplate="5,10,15">  
+            <p:panel widgetVar="comment_#{comment.id}"  closable="true" >
+                  
+                <p:button  icon="ui-icon-close" title="Icon Only" onclick="comment_#{comment.id}.close()" style="width:16px;height:16px;font-weight:bold;"/>  
+                <h:outputText  value=" " />
+                 <h:outputText  value="#{comment.user}" style="font-size:13px;font-weight:bold;color:#1c94c4;"/> 
+                 <h:outputText  value=" " />
+                 <h:outputText  value="#{comment.date}" />
+                 <br/>
+                 <h:outputText  value="#{comment.content}" />
+
+                 
+
+            </p:panel>
+            
+        </p:dataGrid>
+        
+    </p:fieldset> 
+</h:form>
+</ui:composition>

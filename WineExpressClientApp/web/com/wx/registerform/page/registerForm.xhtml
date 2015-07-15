@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <h:form id='registerForm'>
+        <p:panel id="registerPanel" header="register form" style="margin-bottom:10px;"> 
+
+
+            <h:panelGrid columns="4" style="margin-bottom:10px;">  
+                <h:outputLabel for="emailAddress" value="emailAddress: " style="margin-bottom:10px;"/>  
+                <p:spacer width="10" height="50" />
+                <p:inputText id="emailAddress" value="#{registerFormBean.email}" required="true" label="emailAddress" >  
+                    <f:validateLength minimum="2" />  
+                </p:inputText>  
+                <p:message for="emailAddress" />  
+
+                <h:outputLabel for="sex" value="Sex: " style="margin-bottom:10px;"/>  
+                <p:spacer width="10" height="50" />
+                <p:selectOneMenu id="sex" value="#{registerFormBean.sex}" required="true" label="sex" >  
+                    <f:selectItem itemLabel="Male" itemValue="Male" /> 
+                    <f:selectItem itemLabel="Female" itemValue="Female" /> 
+                </p:selectOneMenu>  
+                <p:message for="sex" />  
+
+                <h:outputLabel for="it_password" value="Your Password: " style="margin-bottom:10px;"/>  
+                <p:spacer width="10" height="50" />
+                <p:password id="it_password" value="#{registerFormBean.password}" required="true" label="Password" >  
+                    <f:validateLength minimum="2" />  
+                </p:password>  
+                <p:message for="it_password" />  
+
+                <h:outputLabel for="password_cfm" value="Confirm Your Password: " style="margin-bottom:10px;"/>  
+                <p:spacer width="10" height="50" />
+                <p:password id="password_cfm" value="#{registerFormBean.passwordCfm}" required="true" label="Password" />  
+
+                <p:message for="password_cfm" />  
+
+                <h:outputLabel for="birthday" value="Birthday: " style="margin-bottom:10px;"/>  
+                <p:spacer width="10" height="50" />
+                <p:calendar value="#{registerFormBean.birthday}" id="birthday" showButtonPanel="true"/>
+                <p:message for="birthday" /> 
+
+            </h:panelGrid>
+            <h:panelGrid columns="1" style="margin-bottom:10px;">  
+                <p:commandButton value="Confirm"/>
+            </h:panelGrid>
+
+        </p:panel>
+    </h:form>
+</ui:composition>
+

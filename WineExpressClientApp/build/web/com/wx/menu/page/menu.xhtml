@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <div width="100%">
+        <f:loadBundle var="menu" basename="com.wx.menu.resource.menu"/>
+        <h:form id="menu_form" >
+            <p:menu style="width:180px">
+                <p:submenu label="#{menu.SUBMENU_ACCOUNT}" rendered="false">
+                    <p:menuitem value="#{menu.MENUITEM_VIEW_PURCHASE_HISTORY}"/>
+                </p:submenu>
+                <p:submenu label="#{menu.SUBMENU_FIND_PRODUCT}">
+                    <p:menuitem value="#{menu.MENUITEM_PRODUCT_SEARCH}" action="#{productController.search}"/>
+                    <p:menuitem value="#{menu.MENUITEM_PRODUCT_BROWSE}" action="#{productController.browse}"/>
+                </p:submenu>
+                <p:submenu label="#{menu.SUBMENU_PURCHASE_WINE}">
+                    <p:menuitem value="#{menu.MENUITEM_SHOPPING_CART}" url="#" />
+                    <p:menuitem value="#{menu.MENUITEM_PAY_INFO}" url="#" />
+                </p:submenu>
+                <p:submenu label="#{menu.SUBMENU_PRODUCT_MANAGEMENT}">
+                    <p:menuitem value="#{menu.MENUITEM_CATEGORY}" action="#{productController.category}" />
+                    <p:menuitem value="#{menu.MENUITEM_PRODUCT}" action="#{productController.list}"/>
+                    <p:menuitem value="#{menu.MENUITEM_ENQUIRY}" action="#{enquiryController.display}" />
+                </p:submenu>
+                <p:submenu label="#{menu.SUBMENU_REPORT_MANAGEMENT}">
+                    <p:menuitem value="#{menu.MENUITEM_SALES_REPORT}" url="#" />
+                    <p:menuitem value="#{menu.MENUITEM_PROFITS_REPORT}" url="#" />
+                </p:submenu>
+            </p:menu>
+        </h:form>
+    </div>
+</ui:composition>

@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+    
+<h:form id="product_browse_form">            
+     <p:dataGrid var="category" value="#{productCategoryBean.categories}" columns="1">  
+        <p:panel header="#{category.name}">  
+        <p:selectManyCheckbox id="sub" layout="" style="border:0">  
+        <f:selectItems value="#{category.getNameListfromSubCategories()}" />  
+        </p:selectManyCheckbox>     
+        </p:panel>     
+        
+    </p:dataGrid>  
+    <br/>
+    
+    <p:commandButton  value="Find"  ajax="false" action="#{productController.result}" />
+    
+    
+
+</h:form>
+    <hr/>   
+
+</ui:composition>

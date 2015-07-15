@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <style>
+        .ui-widget,
+        .ui-widget .ui-widget {
+            font-size: 12px !important;
+        }
+        .ui-widget-header{
+            font-size: 13px !important;
+        }
+    </style>
+    <f:loadBundle var="main" basename="com.wx.main.resource.main" />
+    <f:view contentType="text/html" id="view">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>#{main.TITLE}</title>
+            </f:facet>
+        </h:head>
+        <h:body id="body">
+            <p:layout fullPage="true" id="fullpage">
+                <p:layoutUnit position="north" size="75" 
+                              resizable="false" id="north">
+                    <div class="ui-widget ui-widget-header">
+                        <h1>
+                            <p:outputLabel style="padding-left: 20px;" value="#{main.PAGE_HEADER}" />
+                        </h1>
+                    </div>
+                </p:layoutUnit>
+                <p:layoutUnit position="south" size="50"
+                              resizable="true"  id="south">
+                    <h:form id="footer_form">
+                        <h:panelGrid columns="5" style="margin: 0 auto">
+                            <p:commandLink value="#{main.LINK_HOME}" action="#{mainController.backHome}"/>
+                        </h:panelGrid>
+                    </h:form>
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size="200" header="Menu"
+                              id="west" rendered="#{mainBean.renderMenu}" collapsible="true">
+                    <p:outputPanel autoUpdate="true">
+                        <ui:include src="#{main.MENU_PAGE}" />
+                    </p:outputPanel>
+                </p:layoutUnit>
+                <p:layoutUnit position="east" size="300" header="#{main.ACCOUNT_PANEL_HEADER}"
+                              id="east" collapsible="true">              
+                    <ui:include src="#{main.ACCOUNT_PAGE}"/>
+                </p:layoutUnit>
+                <p:layoutUnit position="center" id="center">
+
+                    <p:panel id="center_panel" rendered="#{mainBean.renderGallery}" >
+                        <ui:include src="#{main.GALLERIA_PAGE}"/>
+                    </p:panel>
+                    <p:panel rendered="#{mainBean.renderRegisterForm}">
+                        <ui:include src="#{main.REGISTER_FORM_PAGE}"/>
+                    </p:panel>
+                    <p:panel rendered="#{mainBean.renderChangePassword}">
+                        <ui:include src="#{main.CHANGE_PASSOWRD_PAGE}"/>
+                    </p:panel>
+                    <p:panel rendered="#{mainBean.renderPurchaseHistory}">
+                        <ui:include src="#{main.PURCHASE_HISTORY_PAGE}"/>
+                    </p:panel>
+                    <p:panel rendered="#{mainBean.renderAccountActivation}">
+                        <ui:include src="#{main.ACCOUNT_ACTIVATION_PAGE}"/>
+                    </p:panel>
+                    <p:panel rendered="#{mainBean.renderParticulars}">
+                        <ui:include src="#{main.CHANGE_PARTICULARS_PAGE}"/>
+                    </p:panel>
+                    <!-- Product Management Subsystem Start -->
+
+                    <p:panel rendered="#{mainBean.renderProductSearch}" header="Search for a Wine">
+                        <ui:include src="#{main.PRODUCT_SEARCH_PAGE}"/>
+                    </p:panel>
+                    <p:panel rendered="#{mainBean.renderProductBrowse}" header="Browse Categories">
+                        <ui:include src="#{main.PRODUCT_BROWSE_PAGE}"/>
+                    </p:panel>
+                    <p:panel rendered="#{mainBean.renderProductResult}" >
+                        <ui:include src="#{main.PRODUCT_RESULT_PAGE}"/>
+                    </p:panel>
+                    <p:panel rendered="#{mainBean.renderProductList}" header="Product List">
+                        <ui:include src="#{main.PRODUCT_LIST_PAGE}"/>
+                    </p:panel>
+                    <p:panel rendered="#{mainBean.renderProductDetail}" header="Product Detail">
+                        <ui:include src="#{main.PRODUCT_DETAIL_PAGE}"/>
+                    </p:panel>
+                    <p:panel rendered="#{mainBean.renderProductEntry}" header="Product Entry">
+                        <ui:include src="#{main.PRODUCT_ENTRY_PAGE}"/>
+                    </p:panel>
+                    <p:panel rendered="#{mainBean.renderProductCategory}" header="Product Category">
+                        <ui:include src="#{main.PRODUCT_CATEGORY_PAGE}"/>
+                    </p:panel>
+                    <!-- Product Management Subsystem End -->
+                    
+                    <!-- Enquiry Subsystem Start -->
+                    <p:panel rendered="#{mainBean.renderEnquiry}" header="Enquiry">
+                        <ui:include src="#{main.ENQUIRY_PAGE}"/>
+                    </p:panel>
+                    <!-- Enquiry Subsystem End -->
+                </p:layoutUnit>
+                
+            </p:layout>
+                
+        </h:body>
+    </f:view>
+</html>
+

@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                >
+    
+    <h:form id="product_entry_form">
+        <h:panelGrid columns="2" cellpadding="5">  
+        
+        <h:outputText value="Product ID:" />    
+        <h:outputText value="TBD" />     
+        
+        <h:outputText value="Title:" />  
+        <p:inputText id="product_entry_title" style="width:250px" />
+  
+        <h:outputText value="Producer:" />  
+        <p:inputText id="product_entry_producer" style="width:250px" />  
+        
+        <h:outputText value="Description:" />  
+        <p:inputTextarea id="product_entry_description" rows="6" cols="33" />  
+  
+        <h:outputText value="Origin:" />  
+        <p:inputText id="product_entry_origin" style="width:250px" /> 
+  
+        <h:outputText value="Color:"/>  
+        <p:inputText id="product_entry_color" style="width:250px" />  
+        
+        <h:outputText value="Stock:" />  
+        <p:spinner id="product_entry_stock" min="0"  value="0"/>
+  
+        <h:outputText value="Start Date:" />  
+        <p:calendar  id="product_entry_start" />   
+        
+        <h:outputText value="End Date:" />  
+        <p:calendar  id="product_entry_end" />   
+        
+        <h:outputText value="Image:" />  
+        <p:fileUpload   dragDropSupport="false"  mode="simple"
+                   sizeLimit="100000" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" /> 
+  
+        
+        <h:outputText value="Categories:" /> 
+        
+            
+        <h:panelGroup>
+        <p:dataGrid var="category" value="#{productCategoryBean.categories}" columns="1" >  
+           <p:panel header="#{category.name}">  
+           <p:selectManyCheckbox id="sub" layout="" style="border:0">  
+           <f:selectItems value="#{category.getNameListfromSubCategories()}" />  
+           </p:selectManyCheckbox>     
+           </p:panel>     
+
+       </p:dataGrid>  
+       </h:panelGroup>
+    
+        </h:panelGrid>  
+  
+    <p:commandButton value="Reset" type="reset" />  
+    <p:commandButton value="Save" type="submit"/>  
+        
+        
+   </h:form>
+
+</ui:composition>

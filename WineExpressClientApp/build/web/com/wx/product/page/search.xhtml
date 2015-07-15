@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <style>  
+
+.column2 {
+    width:180px;
+    text-align: left;
+}    
+</style>    
+<h:form id="product_search_form">
+    
+ 
+        <h:panelGrid columns="2"   style="width:100%;margin-bottom:10px" columnClasses="column1,column2" > 
+        <p:column > 
+        <h:outputText value="Search all fields:" style="padding-right:20px" />  
+        <p:inputText id="product_search_text" style="width:250px" />
+        <p:watermark for="product_search_text" value="Keyword, Title, etc." />  
+         <p:commandButton  value="Find"  ajax="false" action="#{productController.result}" />
+        </p:column>
+        <p:column >
+        <p:selectOneMenu id="product_list_order" value="1" >  
+            
+            <f:selectItem itemLabel="Sort Alphabetically A to Z" itemValue="1" />  
+            <f:selectItem itemLabel="Price: Low to High" itemValue="2" />  
+            <f:selectItem itemLabel="Price: High to Low" itemValue="3" />  
+        </p:selectOneMenu> 
+        </p:column>
+        </h:panelGrid>
+
+</h:form>   
+    <hr/>
+
+</ui:composition>

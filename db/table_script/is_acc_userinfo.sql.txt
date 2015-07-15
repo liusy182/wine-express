@@ -1,0 +1,12 @@
+CREATE TABLE `is_acc_userinfo` (
+  `email` varchar(30) NOT NULL,
+  `type` varchar(10) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `sex` varchar(6) NOT NULL,
+  `birthday` datetime DEFAULT NULL,
+  `actived` varchar(15) NOT NULL,
+  `privatekey` varchar(64) NOT NULL,
+  PRIMARY KEY (`email`),
+  UNIQUE KEY `email_UNIQUE` (`email`),
+  UNIQUE KEY `privatekey_UNIQUE` (`privatekey`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

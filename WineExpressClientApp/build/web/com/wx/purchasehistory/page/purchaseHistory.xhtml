@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui">
+    <h:form id="ph_form">
+        <p:panel id="purchaseHistory" header="purchaseHistory" style="margin-bottom:10px;"> 
+
+            <p:dataTable value="#{purchaseHistoryBean.purchaseItemsList}" var="item" style="width: 500px; border:1px">
+                <p:column id="c1" width="40%">
+                    <f:facet name="header">Email</f:facet>
+                    <h:outputText id="o1" value="#{item.email}"></h:outputText>
+                    <f:attribute name="width" value="40%"/>
+                </p:column>
+                <p:column id="c2" width="40%">
+                    <f:facet name="header">Product Name</f:facet>
+                    <h:outputText id="o2" value="#{item.productName}"></h:outputText>
+                    <f:attribute name="width" value="40%"/>
+                </p:column>
+                <p:column id="c3" width="20%">
+                    <f:facet name="header">Purchase Date</f:facet>
+                    <h:outputText id="o3" value="#{item.purchaseDate}">
+                        <f:convertDateTime pattern="dd-MM-yyyy" />
+                        <f:attribute name="width" value="20%"/>
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+
+        </p:panel>
+    </h:form>
+</ui:composition>

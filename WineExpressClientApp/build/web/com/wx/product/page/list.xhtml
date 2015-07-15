@@ -1,0 +1,62 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+                    
+    
+    
+    <h:form id="product_list_form">
+        
+    <p:dataTable var="product" value="#{productListBean.products}" rowKey="#{product.model}" paginator="true" rows="10"  
+                selection="#{productListBean.selectedProduct}" selectionMode="single" filteredValue="#{productListBean.filteredProducts}" id="product_list_table">  
+  
+        <p:ajax event="rowSelect" update=":product_list_form:display" oncomplete="productDialog.show()" />  
+  
+        <p:column headerText="Model" sortBy="#{product.model}" filterBy="#{product.model}" id="model">  
+            #{product.model}  
+        </p:column>  
+  
+        <p:column headerText="Year" sortBy="#{product.year}" filterBy="#{product.year}" id="year">  
+            #{product.year}  
+        </p:column>  
+  
+        <p:column headerText="Manufacturer" sortBy="#{product.manufacturer}" filterBy="#{product.manufacturer}" id="manufacturer">  
+            #{product.manufacturer}  
+        </p:column>  
+  
+        <p:column headerText="Color" sortBy="#{product.color}" filterBy="#{product.color}" id="color">  
+            #{product.color}  
+        </p:column>  
+  
+    </p:dataTable>  
+  
+    <p:dialog header="Product Overview" widgetVar="productDialog" resizable="false"  
+              width="200" showEffect="explode" hideEffect="explode">  
+  
+        <h:panelGrid id="display" columns="2" cellpadding="4">  
+  
+            <f:facet name="header">  
+                <p:graphicImage  value="/image/product/1997-oaky-634134200941093750.png" width="40"/>  
+            </f:facet>  
+  
+            <h:outputText value="Model:" />  
+            <h:outputText value="#{productListBean.selectedProduct.model}" id="model"/>  
+  
+            <h:outputText value="Year:" />  
+            <h:outputText value="#{productListBean.selectedProduct.year}" id="year"/>  
+  
+            <h:outputText value="Manufacturer:" />  
+            <h:outputText value="#{productListBean.selectedProduct.manufacturer}" id="manufacturer"/>  
+  
+            <h:outputText value="Color:" />  
+            <h:outputText value="#{productListBean.selectedProduct.color}" id="color"/>  
+        </h:panelGrid>  
+    </p:dialog>  
+  
+    <br/>    
+    <p:commandButton  value="Update"  ajax="false" action="#{productController.entry}" />
+    <p:commandButton  value="New Product"  ajax="false" action="#{productController.entry}" />
+    </h:form>
+        
+</ui:composition>
